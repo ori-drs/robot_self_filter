@@ -77,6 +77,9 @@ target_link_libraries(robot_geometric_shapes ${bullet_LIBRARIES} ${Boost_LIBRARI
 install(DIRECTORY include/${PROJECT_NAME}/
    DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
+install(DIRECTORY launch
+   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+
 install(TARGETS ${PROJECT_NAME} test_filter self_filter robot_geometric_shapes
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
    ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}

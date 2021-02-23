@@ -46,10 +46,10 @@ class SelfFilter
 {
 public:
 
-  SelfFilter(void): nh_("~"), subscribing_(false)
+  SelfFilter(ros::NodeHandle nh): nh_(nh), subscribing_(false)
   {
     nh_.param<std::string>("sensor_frame", sensor_frame_, std::string());
-    nh_.param("use_rgb", use_rgb_, false);
+    nh_.param("use_rgb", use_rgb_, true);
     nh_.param("max_queue_size", max_queue_size_, 10);
     if (use_rgb_) 
     {
@@ -74,7 +74,7 @@ public:
                                                                             connect_cb, connect_cb);
   }
     
-  ~SelfFilter(void)
+  ~SelfFilter()
   {
     if (self_filter_) 
     {
@@ -197,8 +197,8 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "self_filter");
   
-  ros::NodeHandle nh("~");
-  robot_self_filter::SelfFilter s;
+  ros::NodeHandle nh;
+  robot_self_filter::SelfFilter s(nh);
   ros::spin();
     
   return 0;
