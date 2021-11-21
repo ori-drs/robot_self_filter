@@ -1,20 +1,16 @@
     <launch>
 
+        <arg name="cloud_out" default="/filtered_cloud"/>
+        <arg name="cloud_in" default="/local_points"/>
+
         <!-- Load self_see_links -->
-        <!-- <rosparam command="load" file="$(find robot_self_filter)/launch/hsr_links.yaml"/> -->
         <rosparam command="load" file="$(find robot_self_filter)/launch/hsr_links.yaml"/>
         <param name="sensor_frame" value="head_rgbd_sensor_rgb_frame"/>
 
          <!-- Robot Self Filter -->
         <node pkg="robot_self_filter" name="robot_self_filter" type="self_filter" respawn="true" output="screen">
-          <!-- <arg name="cloud_in" value="local_points" /> -->
-          <!-- <arg name="cloud_out" value="fuga" /> -->
-            <remap from="/cloud_in" to="/local_points"/>        
-            <remap from="/cloud_out" to="/filtered_cloud"/>        
+            <remap from="/cloud_in" to="$(arg cloud_in)"/>        
+            <remap from="/cloud_out" to="$(arg cloud_out)"/>        
         </node>
 
-
-        <!-- Specify URDF file -->
-          <!-- <param name="robot_description"
-                textfile="$(find robot_self_filter)/urdf/$(arg model).urdf"/> -->
      </launch>
