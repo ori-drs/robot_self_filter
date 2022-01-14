@@ -137,6 +137,7 @@ private:
   void cloudCallback(const sensor_msgs::PointCloud2::ConstPtr &cloud2) 
   {
     ROS_DEBUG("Got pointcloud that is %f seconds old", (ros::Time::now() - cloud2->header.stamp).toSec());
+    // ROS_INFO("Got pointcloud that is %f seconds old", (ros::Time::now() - cloud2->header.stamp).toSec());
     std::vector<int> mask;
     ros::WallTime tm = ros::WallTime::now();
 
@@ -169,6 +170,7 @@ private:
       
     double sec = (ros::WallTime::now() - tm).toSec();
     pointCloudPublisher_.publish(out2);
+    // ROS_INFO("Self filter: reduced %d points to %d points in %f seconds", input_size, output_size, sec);
     ROS_DEBUG("Self filter: reduced %d points to %d points in %f seconds", input_size, output_size, sec);
 
   }

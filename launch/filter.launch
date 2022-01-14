@@ -5,7 +5,9 @@
 
         <!-- Load self_see_links -->
         <rosparam command="load" file="$(find robot_self_filter)/launch/hsr_links.yaml"/>
-        <param name="sensor_frame" value="head_rgbd_sensor_rgb_frame"/>
+        <!-- <param name="sensor_frame" value="head_rgbd_sensor_rgb_frame"/>
+        <param name="use_rgb" value="false"/>
+        <param name="max_queue_size" value="1"/> -->
 
          <!-- Robot Self Filter -->
         <node pkg="robot_self_filter" name="robot_self_filter" type="self_filter" respawn="true" output="screen">
